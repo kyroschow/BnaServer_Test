@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BnaServer.iml" filepath="$PROJECT_DIR$/BnaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bnanode/bnanode.iml" filepath="$PROJECT_DIR$/bnanode/bnanode.iml" />
+    </modules>
+  </component>
+</project>
