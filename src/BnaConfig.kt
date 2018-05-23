@@ -17,8 +17,8 @@ fun main(args: Array<String>) {
                 console.log("Player Disconnected, ID: $id")
             }
             on("TestEmit") {
-                val name = it.get("message")
-                console.log("$id's message: $name")
+                val name = it.message
+                console.log("$id: $name")
             }
         }
     }
