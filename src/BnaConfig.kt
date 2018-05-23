@@ -8,32 +8,20 @@ fun main(args: Array<String>) {
     server.listen(8080) {
         console.log("Server is now running...")
     }
-    io.on("connection") { socket ->
-        console.log("Player Connected!")
-        socket.emit("SocketID", json("id" to socket.id))
-        socket.broadcast.emit("NewPlayerJoined", json("id" to socket.id))
-        socket.on("disconnect") {
-            console.log("Player Disconnected")
+    io.on("connection") {
+        it.apply {
+            console.log("Player Connected! ID: ${id}")
+            emit("SocketID", json("id" to id))
+            broadcast.emit("NewPlayerJoined", json("id" to id))
+            on("disconnect") {
+                console.log("Player Disconnected, ID: $id")
+            }
+            on("TestEmit") {
+                val name = it.get("message")
+                console.log("$id's message: $name")
+            }
         }
     }
-}
-
-external class Server {
-    fun listen(port: Int, callback: () -> Unit)
-}
-
-external class IO {
-    fun on(event: String, callback: (Socket) -> Unit)
-}
-
-external class Socket {
-    fun on(event: String, callback: () -> Unit)
-
-    fun emit(name: String, info: Json)
-
-    var id: String
-
-    var broadcast: Socket
 }
 
 /*
